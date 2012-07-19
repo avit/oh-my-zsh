@@ -18,6 +18,15 @@
 # limitations under the License.
 #
 
+# Override oh-my-zsh git plugin: too slow
+parse_git_dirty() {
+  if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  fi
+}
+
 PROMPT='
 $(_user_host)${_current_dir} $(git_prompt_info) $(_ruby_version)
 ▶ '
